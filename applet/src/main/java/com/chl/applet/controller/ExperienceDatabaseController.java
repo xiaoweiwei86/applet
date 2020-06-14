@@ -27,16 +27,20 @@ import java.util.Map;
 public class ExperienceDatabaseController {
     @Value("${web-url}")
     private String webUrl;
-    @Autowired
-    private ExperienceDatabaseService experienceDatabaseService;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private CommentService commentService;
-    @Autowired
-    private MailService mailService;
+    private final ExperienceDatabaseService experienceDatabaseService;
+    private final UserService userService;
+    private final CommentService commentService;
+    private final MailService mailService;
     private static final Integer pageSize = 20;
     private static final String orderBy = "entry_date desc";
+
+    @Autowired
+    public ExperienceDatabaseController(ExperienceDatabaseService experienceDatabaseService, UserService userService, CommentService commentService, MailService mailService) {
+        this.experienceDatabaseService = experienceDatabaseService;
+        this.userService = userService;
+        this.commentService = commentService;
+        this.mailService = mailService;
+    }
 
     @RequestMapping("list")
     public String list(Map<String, Object> map, @RequestParam(defaultValue = "1") Integer pageNum) {

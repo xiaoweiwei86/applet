@@ -2,18 +2,21 @@ package com.chl.applet.service.impl;
 
 import com.chl.applet.dao.ExperienceDatabaseDao;
 import com.chl.applet.entity.ExperienceDatabase;
-import com.chl.applet.entity.User;
 import com.chl.applet.service.ExperienceDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 @Service
 public class ExperienceDatabaseServiceImpl implements ExperienceDatabaseService {
+    private final ExperienceDatabaseDao experienceDatabaseDao;
+
     @Autowired
-    private ExperienceDatabaseDao experienceDatabaseDao;
+    public ExperienceDatabaseServiceImpl(ExperienceDatabaseDao experienceDatabaseDao) {
+        this.experienceDatabaseDao = experienceDatabaseDao;
+    }
+
     @Override
     public List<ExperienceDatabase> findAll() {
         return experienceDatabaseDao.selectAll();

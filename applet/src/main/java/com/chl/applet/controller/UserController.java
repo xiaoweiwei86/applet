@@ -23,11 +23,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private RoleService roleService;
+    private final UserService userService;
+    private final RoleService roleService;
     private static final Integer pageSize = 15;
+
+    @Autowired
+    public UserController(UserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
+    }
 
     @RequestMapping("/list")
     public String list(Map<String, Object> map, @RequestParam(defaultValue = "1") Integer pageNum) {
