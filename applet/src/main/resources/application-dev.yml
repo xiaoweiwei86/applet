@@ -9,12 +9,19 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
+
 logging:
+  file:
+    path: d:\log
+    max-history: 7
   level:
     com:
       chl:
         applet:
           dao:  debug
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss
+
 
 #自定义属性
 upload-dir: D:\Apache Software Foundation\Tomcat 9.0\webapps\img
